@@ -4,7 +4,6 @@ import { connectDB } from "./db";
 
 const app = express();
 
-//AYUDA :C
 (async function () {
   await connectDB();
 
