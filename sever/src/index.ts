@@ -4,11 +4,11 @@ import { connectDB } from './db'
 
 const app = express();
 
-(async function() {
- await  connectDB()
+(async function () {
+  await connectDB();
 
   await startApolloServer(app);
-  
+
   const port = process.env.PORT || 4000;
   app.listen(port, () => {
     console.log(`Server started on port ${port}`);

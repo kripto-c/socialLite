@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsc & nodemon ./dist/index"
+    "start": "tsc & node ./dist/index"
   },
   "repository": {
     "type": "git",

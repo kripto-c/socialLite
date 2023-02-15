@@ -1,6 +1,8 @@
+import style from "../styles/NavBar.module.scss";
+
 function NavBar(props: any) {
   return (
-    <div>
+    <>
       <nav>
         <h1>
           Socia<span>Lite</span>
@@ -19,7 +21,7 @@ function NavBar(props: any) {
       </nav>
 
       {props.children}
-    </div>
+    </>
   );
 }
 
