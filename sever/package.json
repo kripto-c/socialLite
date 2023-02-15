@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node index.ts"
+    "start": "tsc & nodemon ./dist/index"
   },
   "repository": {
     "type": "git",
@@ -19,9 +19,13 @@
   "homepage": "https://github.com/kripto-c/socialLite#readme",
   "dependencies": {
     "@apollo/server": "^4.3.3",
+    "@types/express": "^4.17.17",
+    "@types/graphql": "^14.5.0",
+    "@types/node": "^18.13.0",
     "apollo-server-express": "^3.11.1",
     "express": "^4.18.2",
-    "graphql": "^16.6.0"
+    "graphql": "^16.6.0",
+    "mongoose": "^6.9.1"
   },
   "devDependencies": {
     "ts-node": "^10.9.1",
