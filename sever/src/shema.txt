@@ -1,0 +1,42 @@
+ //databes1
+{
+    "users":{
+        "id": "uuid",
+         "username":"hola22",
+         "nombre":"hola",
+         "apellido": "apellido",
+         "email": "correo",
+         "password":"124345",
+         "nacimiento":"12-31-22",
+         "foto":"asdasdasd",
+          "amigos":[],
+          "verificado":true,
+          "conectado":"active"
+      },
+
+      "publicaciones":{
+            "id":"uuid",
+             "id_user":"uuid",
+             "input":"asdasdad",
+             "imagen":"asdasdad",
+             "like":"123123"
+      }
+}
+//   database2
+{
+   "mensajes":{
+          "id_1":"uuid",
+          "id_2":"uuid",
+          "mensajes": [
+            {
+            "user": 20-12-2002.10:30,
+            "message": "busco novia xd"
+            },
+            {
+            "fecha": 20-12-2002.10:31,
+            "message": "...."
+          },
+          
+          ]
+   }
+}
