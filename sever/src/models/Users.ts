@@ -26,10 +26,19 @@ const UserShema = new mongoose.Schema({
      profile_picture:{
         type:String
      },
-     friends:{
+     friends:[{
         type:[mongoose.Schema.Types.ObjectId],
         ref: "User"
-     },
+     }],
+    publications:[{
+          type:mongoose.Schema.Types.ObjectId,
+          ref:"Publications"
+    }],
+    message:[{
+       type:mongoose.Schema.Types.ObjectId,
+       ref: "Message"
+    }]
+    ,
      verified:{
         type:Boolean,
      },

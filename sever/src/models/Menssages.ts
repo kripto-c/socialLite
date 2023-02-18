@@ -9,15 +9,16 @@ const MessageShema = new mongoose.Schema({
             type:[mongoose.Schema.Types.ObjectId],
             ref: "User"
         },
-        message:{
+        message:[{
             type:Array,
-            user:{
-                type:String
+            username:{
+                type:[mongoose.Schema.Types.String],
+                ref:"User"
             },
             message:{
                 type:String
             }            
-        }
+        }]
 
 },
 {
