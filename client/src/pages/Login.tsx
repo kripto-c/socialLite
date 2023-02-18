@@ -1,5 +1,5 @@
 import Head from "next/head";
-import NavBar from "@/components/NavBar";
+import NavBar from "@/components/nav/NavBar";
 
 function Login() {
   return (

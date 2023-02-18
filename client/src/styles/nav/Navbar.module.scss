@@ -1,0 +1,38 @@
+.nav {
+  background-color: var(--bg-a1);
+  font-family: var(--font);
+  display: flex;
+  height: 60px;
+  align-items: center;
+  justify-content: space-between;
+
+  h1 {
+    color: #fff;
+    font-weight: 1000;
+    font-size: 32px;
+    font-family: sans-serif;
+    margin-left: 30px;
+
+    span {
+      padding: 1px 5px;
+      border-radius: 4px;
+      background-color: #000;
+    }
+  }
+
+  ul {
+    display: flex;
+    gap: 40px;
+    margin-right: 30px;
+
+    li {
+      list-style: none;
+
+      a {
+        font-weight: 400;
+        color: #fff;
+        text-decoration: none;
+      }
+    }
+  }
+}
