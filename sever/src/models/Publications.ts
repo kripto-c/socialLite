@@ -15,4 +15,10 @@ const PublicationsSchema = new mongoose.Schema({
             type:Number,
             default:0
         }
-})
+},
+{
+    timestamps: false 
+}
+)
+
+module.exports = mongoose.model("Publications", PublicationsSchema);
