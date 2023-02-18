@@ -33,6 +33,6 @@ export const typeDefs = gql`
   type Message {
       id_1:User,
       id_2:User,
-      message:Array
+      message:[{username:String, message:String}]
   }
 `;
