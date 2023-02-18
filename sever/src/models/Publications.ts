@@ -11,10 +11,21 @@ const PublicationsSchema = new mongoose.Schema({
         image:{
             type:String
         },
-        like:{
-            type:Number,
-            default:0
-        }
+        likes:[{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'User'
+        }],
+        date:{
+            type:Date,
+            default:Date.now
+        },
+        comments:[{
+            text:String,
+            author:{
+                type:mongoose.Schema.Types.ObjectId,
+                ref:'User'
+            }
+        }]
 },
 {
     timestamps: false 
