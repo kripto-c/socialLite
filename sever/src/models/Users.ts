@@ -36,6 +36,8 @@ const UserShema = new mongoose.Schema({
      connected:{
          type:Boolean,
      }
-})
+},
+{ timestamps: false }
+)
 
 module.exports = mongoose.model("User", UserShema);
