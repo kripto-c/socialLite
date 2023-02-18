@@ -11,10 +11,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.startApolloServer = void 0;
 const apollo_server_express_1 = require("apollo-server-express");
-const graphql_1 = require("./graphql");
+const typeDefs_1 = require("./graphql/typeDefs");
+const resolve_1 = require("./graphql/resolve");
 const server = new apollo_server_express_1.ApolloServer({
-    typeDefs: graphql_1.typeDefs,
-    resolvers: graphql_1.resolvers,
+    typeDefs: typeDefs_1.typeDefs,
+    resolvers: resolve_1.resolvers,
 });
 function startApolloServer(app) {
     return __awaiter(this, void 0, void 0, function* () {
