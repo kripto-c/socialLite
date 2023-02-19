@@ -6,8 +6,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const PublicationsSchema = new mongoose_1.default.Schema({
     id_user: {
-        type: [mongoose_1.default.Schema.Types.ObjectId],
-        ref: "User"
+        type: mongoose_1.default.Schema.Types.ObjectId,
+        ref: "User",
+        require: true
     },
     description: {
         type: String
@@ -15,9 +16,16 @@ const PublicationsSchema = new mongoose_1.default.Schema({
     image: {
         type: String
     },
-    like: {
-        type: Number,
-        default: 0
-    }
+    likes: [{
+            type: mongoose_1.default.Schema.Types.ObjectId,
+            ref: 'User'
+        }],
+    comments: [{
+            text: { type: String },
+            author: { type: String, }
+        }]
+}, {
+    timestamps: true
 });
+exports.default = mongoose_1.default.model("Publications", PublicationsSchema);
 //# sourceMappingURL=Publications.js.map
