@@ -2,8 +2,9 @@ import mongoose from "mongoose";
 
 const PublicationsSchema = new mongoose.Schema({
         id_user:{
-            type:[mongoose.Schema.Types.ObjectId],
-            ref: "User"
+            type:mongoose.Schema.Types.ObjectId,
+            ref: "User",
+            require:true
         },
         description:{
              type:String
@@ -15,21 +16,14 @@ const PublicationsSchema = new mongoose.Schema({
             type:mongoose.Schema.Types.ObjectId,
             ref:'User'
         }],
-        date:{
-            type:Date,
-            default:Date.now
-        },
         comments:[{
-            text:String,
-            author:{
-                type:mongoose.Schema.Types.ObjectId,
-                ref:'User'
-            }
+            text : {type:String},
+            author:{type:String,}
         }]
 },
 {
-    timestamps: false 
+    timestamps: true
 }
 )
 
-module.exports = mongoose.model("Publications", PublicationsSchema);
+export default mongoose.model("Publications", PublicationsSchema);

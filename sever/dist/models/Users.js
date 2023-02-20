@@ -30,16 +30,24 @@ const UserShema = new mongoose_1.default.Schema({
     profile_picture: {
         type: String
     },
-    friends: {
-        type: [mongoose_1.default.Schema.Types.ObjectId],
-        ref: "User"
-    },
+    friends: [{
+            type: [mongoose_1.default.Schema.Types.ObjectId],
+            ref: "User"
+        }],
+    publications: [{
+            type: mongoose_1.default.Schema.Types.ObjectId,
+            ref: "Publications"
+        }],
+    message: [{
+            type: mongoose_1.default.Schema.Types.ObjectId,
+            ref: "Message"
+        }],
     verified: {
         type: Boolean,
     },
     connected: {
         type: Boolean,
     }
-});
-module.exports = mongoose_1.default.model("User", UserShema);
+}, { timestamps: false });
+exports.default = mongoose_1.default.model("User", UserShema);
 //# sourceMappingURL=Users.js.map
