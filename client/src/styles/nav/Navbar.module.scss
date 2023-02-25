@@ -1,0 +1,52 @@
+.nav {
+  background-color: var(--bg-a1);
+  font-family: var(--font);
+  display: flex;
+  height: 60px;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px -20px 50px #00000025;
+  width: 100%;
+  position: fixed;
+  z-index: 200;
+  top: -10%;
+  opacity: 0;
+  animation: navAnim 0.5s forwards;
+
+  @keyframes navAnim {
+    100% {
+      top: 0;
+      opacity: 1;
+    }
+  }
+
+  h1 {
+    color: #fff;
+    font-weight: 1000;
+    font-size: 32px;
+    font-family: sans-serif;
+    margin-left: 30px;
+
+    span {
+      padding: 1px 5px;
+      border-radius: 4px;
+      background-color: var(--bg-a4);
+    }
+  }
+
+  ul {
+    display: flex;
+    gap: 40px;
+    margin-right: 30px;
+
+    li {
+      list-style: none;
+
+      a {
+        font-weight: 600;
+        color: #fff;
+        text-decoration: none;
+      }
+    }
+  }
+}
