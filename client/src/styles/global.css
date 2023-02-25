@@ -2,20 +2,24 @@
 
 :root {
   --font: "Roboto", sans-serif;
+  --font-c1: #e2e2e3;
+  --font-c2: #171923;
 
-  /*======COLORACT======*/
+  /*======COLOR.ACT======*/
   --bg-a1: #2d3747;
-  --bg-a2: #1e2533;
+  --bg-a2: #282d34;
   --bg-a3: #171923;
-  --bg-a4: #2d3748;
-  --bg-a5: #e2e2e3;
+  --bg-a4: #626e82;
+  --bg-a5: #23262b;
+  --bg-a6: #e2e2e3;
 
   /*======DARK======*/
   --darkv1: #2d3747;
-  --darkv2: #1e2533;
+  --darkv2: #282d34;
   --darkv3: #171923;
   --darkv4: #2d3748;
-  --darkv5: #e2e2e3;
+  --darkv5: #23262b;
+  --darkv6: #e2e2e3;
 
   /*======LIGHT=====*/
   --lightv1: #f7fafc;
@@ -28,4 +32,29 @@
 * {
   margin: 0;
   padding: 0;
+}
+
+html {
+  background-color: var(--bg-a3);
+  overflow-x: hidden;
+}
+
+body::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+body::-webkit-scrollbar {
+  background-color: var(--bg-a3);
+}
+body::-webkit-scrollbar:vertical {
+  width: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--bg-a1);
+  border-radius: 4px;
+  border: 0;
+}
+
+body::-webkit-scrollbar-track {
+  border-radius: 10px;
 }

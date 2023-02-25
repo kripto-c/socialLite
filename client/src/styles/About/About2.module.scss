@@ -1,0 +1,51 @@
+.about2 {
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  font-family: var(--font);
+  flex-wrap: wrap;
+  align-items: center;
+  height: max-content;
+  padding: 50px 0px;
+
+  div {
+    width: 55%;
+    min-width: 450px;
+    transition: 0.5s;
+    padding-left: 30px;
+
+    h1 {
+      margin-bottom: 30px;
+      color: var(--font-c1);
+      font-size: 40px;
+      font-weight: 1000;
+      font-family: sans-serif;
+    }
+
+    p {
+      width: 80%;
+      color: var(--font-c1);
+      font-weight: 500;
+      font-size: 17px;
+    }
+  }
+
+  .div {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+
+  img {
+    width: 35%;
+    transition: 0.8s;
+    transform: translateX(0);
+    min-width: 400px;
+    filter: brightness(95%) contrast(100%);
+  }
+
+  .img {
+    opacity: 0;
+
+    transform: translateX(100px);
+  }
+}
