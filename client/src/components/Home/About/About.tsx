@@ -6,7 +6,7 @@ function About() {
       <span className={style.back}></span>
       <img src="/msg2.png" alt="MSG Logo" />
       <div>
-        <h1>
+        <h1 className={style.titleA1}>
           <b>
             Socia<span>Lite</span> - Web Social
           </b>

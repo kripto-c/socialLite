@@ -1,0 +1,30 @@
+.footer {
+  background-color: var(--bg-a7);
+  height: 25vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  font-family: var(--font);
+  padding: 20px 0px 10px;
+
+  ul {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    color: var(--font-c3);
+    li {
+      list-style: none;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    div {
+      display: flex;
+      gap: 30px;
+      img {
+        cursor: pointer;
+      }
+    }
+  }
+}

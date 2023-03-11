@@ -4,7 +4,7 @@ function NavBar(props: any) {
   return (
     <>
       <nav className={style.nav}>
-        <h1>
+        <h1 className={style.titleN}>
           <b>
             Socia<span>Lite</span>
           </b>
