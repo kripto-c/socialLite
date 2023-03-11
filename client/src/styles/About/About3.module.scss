@@ -9,13 +9,14 @@
   color: var(--font-c1);
   font-family: var(--font);
   gap: 30px;
+  // overflow: hidden;
 
   .back {
     position: absolute;
     top: 0;
     left: -1%;
     width: 115%;
-    height: 90%;
+    height: 110%;
     background-color: var(--bg-a5);
     transform: rotateZ(-1.5deg);
     z-index: -1;

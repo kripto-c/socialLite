@@ -4,6 +4,7 @@
   --font: "Roboto", sans-serif;
   --font-c1: #e2e2e3;
   --font-c2: #171923;
+  --font-c3: #aaaaaa;
 
   /*======COLOR.ACT======*/
   --bg-a1: #2d3747;
@@ -12,6 +13,7 @@
   --bg-a4: #626e82;
   --bg-a5: #23262b;
   --bg-a6: #e2e2e3;
+  --bg-a7: #0e0e0e;
 
   /*======DARK======*/
   --darkv1: #2d3747;
@@ -37,6 +39,7 @@
 html {
   background-color: var(--bg-a3);
   overflow-x: hidden;
+  height: max-content;
 }
 
 body::-webkit-scrollbar {

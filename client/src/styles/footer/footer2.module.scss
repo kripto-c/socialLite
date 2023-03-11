@@ -1,0 +1,44 @@
+@import "footer.module";
+
+.footer2 {
+  @extend .footer;
+  display: flex;
+  flex-direction: column;
+  height: 15vh;
+  font-family: var(--font);
+
+  .content {
+    width: 80%;
+    margin: auto;
+
+    .titleF {
+      color: var(--font-c3);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 0px 30px;
+
+      h4 {
+        color: #fff;
+        font-weight: 1000;
+        font-size: 16px;
+
+        span {
+          padding: 1px 5px;
+          border-radius: 4px;
+          background-color: var(--bg-a4);
+        }
+      }
+      h5 {
+        font-size: 15px;
+      }
+    }
+
+    .aboutF {
+      ul {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+}

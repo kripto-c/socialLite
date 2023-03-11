@@ -6,6 +6,7 @@ import About2 from "@/components/Home/About2/About2";
 import style from "@/styles/index.module.scss";
 import About3 from "@/components/Home/About3/About3";
 import Footer from "@/components/Footer/Footer";
+import Footer2 from "@/components/Footer/Footer2";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +24,8 @@ export default function Home() {
           <About />
           <About2 />
           <About3 />
-          <Footer />
+          {/* <Footer /> */}
+          <Footer2 />
         </main>
       </NavBar>
     </>
