@@ -27,7 +27,7 @@ type CommentTypes = {
   _id:string 
   id_public:string 
   text: string,
-  author: string
+  author: UserTypes["_id"]
 }
 
 type Deletecoments ={
@@ -126,10 +126,11 @@ export const resolvers = {
          try {
           const publication = await Publications.findById(id_public);
           if(!publication) throw new Error('Publication not found');
-           
-          const updatedComments = publication.comments.filter((comment:any ) => comment._id !== _id);
+          
+          const updatedComments = publication.comments?.filter((comment:any ) => comment._id.toString() !== _id);
            if(!updatedComments) throw new Error('comment no found')
           publication.comments = updatedComments;
+          console.log(updatedComments)
           await publication.save();
           
           return publication          
@@ -164,5 +165,14 @@ export const resolvers = {
           if(!user) throw new Error('user no found');
           return user   
         }
-     }
+     }, 
+     //relacion entre usuaria comentario
+     Comment:{
+      author:async (parent:CommentTypes) => {
+        const user = await User.findById(parent.author);
+        if(!user) throw new Error('User no found');
+        return user   
+      },
+   },
+     
   };
