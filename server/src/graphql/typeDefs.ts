@@ -58,19 +58,9 @@ type Mutation {
   
   type Comment {
   _id: ID,
-  id_public:String!
   text: String!
   author: User!
   createdAt: String
   updatedAt: String
 }
 `;
-
-// ,
-// comments:[{text:String, author:User}]
-
-//   type Message {
-//       id_1:User,
-//       id_2:User,
-//       message:[{username:String, message:String}]
-//   }
