@@ -156,6 +156,13 @@ export const resolvers = {
             if(!list) throw new Error('publications no found');
             return list
           } 
+        },
+     //relacion entre publicacion y usuario
+     Publications:{
+        id_user:async (parent:PublicationsTypes) => {
+          const user = await User.findById(parent.id_user)
+          if(!user) throw new Error('user no found');
+          return user   
         }
-     //relacion de usuario y sus publicaciones
+     }
   };
