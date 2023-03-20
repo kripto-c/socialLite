@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+:root {
+  --font: "Roboto", sans-serif;
+  --font-c1: #e2e2e3;
+  --font-c2: #171923;
+  --font-c3: #aaaaaa;
+
+  /*======COLOR.ACT======*/
+  --bg-a1: #2d3747;
+  --bg-a2: #282d34;
+  --bg-a3: #171923;
+  --bg-a4: #626e82;
+  --bg-a5: #23262b;
+  --bg-a6: #e2e2e3;
+  --bg-a7: #0e0e0e;
+
+  /*======DARK======*/
+  --darkv1: #2d3747;
+  --darkv2: #282d34;
+  --darkv3: #171923;
+  --darkv4: #2d3748;
+  --darkv5: #23262b;
+  --darkv6: #e2e2e3;
+
+  /*======LIGHT=====*/
+  --lightv1: #f7fafc;
+  --lightv2: #ffffff;
+  --lightv3: #edf2f7;
+  --lightv4: #53c8c4;
+  --lightv5: #e2e8f0;
+}
+
+html {
+  background-color: var(--bg-a2);
+}
