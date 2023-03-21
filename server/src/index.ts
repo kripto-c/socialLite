@@ -1,3 +1,15 @@
+//############################################//
+// import express from "express";
+// import { startApolloServer } from "./app";
+// import { connectDB } from "./db";
+
+// connectDB();
+
+// startApolloServer();
+
+//############################################//
+//############################################//
+
 import express from "express";
 import { startApolloServer } from "./app";
 import { connectDB } from "./db";

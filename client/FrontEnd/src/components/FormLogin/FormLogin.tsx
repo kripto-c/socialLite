@@ -55,7 +55,12 @@ function FormLogin() {
           />
           <label>Ver contraseña</label>
         </div>
-        <button>Iniciar Sesion</button>
+        <button
+          className="boton"
+          disabled={formData.email.length == 0 || formData.password.length == 0}
+        >
+          Iniciar Sesion
+        </button>
       </form>
     </div>
   );
