@@ -1,0 +1,51 @@
+.registro {
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 2%;
+
+  .adv {
+    width: 40%;
+    height: 600px;
+    // border: 1px solid red;
+    opacity: 0;
+    animation: aprcAdv 0.5s 0.1s forwards;
+    position: relative;
+
+    @keyframes aprcAdv {
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+      from {
+        opacity: 0;
+        transform: translateX(-300px);
+      }
+    }
+
+    .p {
+      color: var(--font-c1);
+      display: flex;
+      padding: 30px;
+      margin-top: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 13px #09090916;
+      width: 70%;
+      background-color: #0000006a;
+      backdrop-filter: blur(3px);
+      display: none;
+    }
+
+    .img {
+      img {
+        position: absolute;
+        bottom: 5%;
+        right: 0%;
+        z-index: -1;
+        width: 500px;
+        height: 550px;
+      }
+    }
+  }
+}

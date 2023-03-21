@@ -8,6 +8,18 @@
   border-radius: 4px;
   padding: 0px 0px 3% 0px;
   box-shadow: 0px 0px 30px #0000001b;
+  animation: aprc 0.5s forwards;
+
+  @keyframes aprc {
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    from {
+      opacity: 0;
+      transform: translateX(300px);
+    }
+  }
 
   h1 {
     padding-top: 10%;
@@ -19,7 +31,6 @@
     display: flex;
     flex-direction: column;
     width: 90%;
-    // gap: 20px;
 
     .email {
       position: relative;
@@ -128,21 +139,28 @@
         height: 15px;
       }
     }
-    button {
-      background-color: var(--bg-a2);
-      font-size: 18px;
-      margin: 30px auto;
-      color: var(--font-c1);
-      width: max-content;
-      padding: 5px 10px;
-      border: 0;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: 0.3s;
+  }
+}
 
-      &:hover {
-        filter: brightness(110%);
-      }
-    }
+.boton {
+  background-color: var(--bg-a2);
+  font-size: 18px;
+  margin: 30px auto;
+  color: var(--font-c1);
+  width: max-content;
+  padding: 5px 10px;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+  filter: brightness(90%);
+
+  &:hover {
+    filter: brightness(110%);
+  }
+
+  &:disabled {
+    filter: brightness(150%);
+    cursor: no-drop;
   }
 }

@@ -20,6 +20,8 @@
   --bg-a6: #e2e2e3;
   --bg-a7: #0e0e0e;
 
+  --err: #e71e1e;
+
   /*======DARK======*/
   --darkv1: #2d3747;
   --darkv2: #282d34;
@@ -38,4 +40,5 @@
 
 html {
   background-color: var(--bg-a2);
+  overflow-x: hidden;
 }
