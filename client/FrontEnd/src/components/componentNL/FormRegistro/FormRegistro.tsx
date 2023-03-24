@@ -1,7 +1,7 @@
 import React, { ChangeEventHandler, FormEventHandler, useState } from "react";
 import Input from "./Input";
 import { NewAcount, BirthDate } from "./FormInterface";
-import { newUser } from "../../GraphQL/createUser";
+import { newUser } from "../../../GraphQL/createUser";
 import { useMutation } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
 import "./FormRegistro.scss";
@@ -88,6 +88,7 @@ function FormRegistro() {
 
   return (
     <div className="formRegistro">
+      <h1>Formulario de registro</h1>
       {/* =====VALIDAR SI ESTA CARGANDO ===== */}
       {loading ? (
         <span className="load">
@@ -149,7 +150,7 @@ function FormRegistro() {
           name="username"
           val={registro.username}
           type={"text"}
-          inputName="Nombre de Usuario"
+          inputName="@Nombre de Usuario"
           onChange={handleChange}
         />
         <Input
@@ -159,21 +160,29 @@ function FormRegistro() {
           type={"text"}
           onChange={handleChange}
         />
-        <Input
-          val={registro.password}
-          name="password"
-          type={viewPassword ? "text" : "password"}
-          inputName="Contraseña"
-          onChange={handleChange}
-          className="passwordV"
-        />
-        <div className="verContraseña">
+        <div className="pass">
+          <Input
+            val={registro.password}
+            name="password"
+            type={viewPassword ? "text" : "password"}
+            inputName="Contraseña"
+            onChange={handleChange}
+            className="passwordV"
+          />
           <input
             type="checkbox"
-            onClick={() => setViewPassword(!viewPassword)}
-            id=""
+            id="checkbox"
+            onChange={() => setViewPassword(!viewPassword)}
           />
-          <label>Ver contraseña</label>
+          {viewPassword ? (
+            <label className="viewPass" htmlFor="checkbox">
+              <img src="/icon/viewPass.png" alt="" />
+            </label>
+          ) : (
+            <label className="viewPass" htmlFor="checkbox">
+              <img src="/icon/noPass.png" alt="" />
+            </label>
+          )}
         </div>
 
         <div className="birthdate">

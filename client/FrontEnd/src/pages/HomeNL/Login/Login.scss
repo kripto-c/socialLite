@@ -1,0 +1,18 @@
+.Login {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: url("/homeNL/log-bg.webp") no-repeat;
+  background-size: 500px;
+  background-position: 70% center;
+  animation: logAp 0.5s forwards;
+
+  @keyframes logAp {
+    100% {
+      background-position: 90% center;
+    }
+  }
+}

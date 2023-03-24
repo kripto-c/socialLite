@@ -1,0 +1,134 @@
+.FormLogin {
+  background-color: var(--bg-a1);
+  border-radius: 20px;
+  padding: 30px 20px;
+  width: 450px;
+  height: 400px;
+  transform: translateX(100px);
+  opacity: 0;
+  animation: loginAp 0.3s forwards;
+
+  @keyframes loginAp {
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 900;
+    font-family: var(--font-f1);
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
+
+  form {
+    height: 67%;
+    display: flex;
+    margin-top: 6%;
+    flex-direction: column;
+
+    .email,
+    .password {
+      position: relative;
+      padding: 0;
+      height: 35px;
+      width: 85%;
+      margin: 20px auto 0px;
+
+      label {
+        position: absolute;
+        left: 10px;
+        top: 7px;
+        transition: 0.3s;
+        color: var(--bg-a7);
+      }
+      .label {
+        background-color: var(--bg-a1);
+        padding: 0px 5px;
+        height: 10px;
+        font-size: 8px;
+        top: -6px;
+      }
+
+      input {
+        border: 1px solid var(--bg-a4);
+        padding: 0px 3%;
+        width: 94%;
+        height: 100%;
+        border-radius: 4px;
+        outline: none;
+        border: 0;
+        border-bottom: 1px solid var(--bg-a4);
+        font-size: 14px;
+
+        &:focus {
+          border-bottom: 1.5px solid var(--bg-a8);
+
+          + label {
+            background-color: var(--bg-a1);
+            padding: 0px 5px;
+            height: 10px;
+            font-size: 8px;
+            top: -6px;
+          }
+        }
+      }
+    }
+    .email {
+      margin-top: 7%;
+      margin-bottom: 3%;
+    }
+
+    .check {
+      position: absolute;
+      width: max-content;
+      top: 0;
+      right: 0;
+      height: 30px;
+      width: 30px;
+
+      label {
+        top: 4px;
+        cursor: pointer;
+        left: -5px;
+      }
+      input {
+        display: none;
+      }
+      img {
+        width: 30px;
+      }
+    }
+
+    .boton {
+      background-color: var(--button-c);
+      width: 250px;
+      margin: 10% auto 0px;
+      padding: 10px;
+      border: 0;
+      border-radius: 4px;
+      color: var(--font-c3);
+
+      &:disabled {
+        background-color: var(--button-d);
+        cursor: no-drop;
+      }
+    }
+  }
+  .link {
+    text-align: center;
+
+    a {
+      font-size: 13px;
+      color: var(--font-c1);
+      text-decoration: none;
+
+      span {
+        text-decoration: underline;
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+.menuAbout {
+  background-color: var(--bg-a1);
+  padding: 30px 20px;
+  border-radius: 20px;
+  width: 180px;
+  height: max-content;
+  transform: translateX(100px);
+  opacity: 0;
+  animation: menuAbout 0.5s 3.7s forwards;
+
+  @keyframes menuAbout {
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: max-content;
+
+    li {
+      display: flex;
+      justify-content: left;
+      gap: 5px;
+
+      a {
+        font-size: 14px;
+        width: 100%;
+        color: var(--font-c1);
+        text-decoration: none;
+      }
+      img {
+        width: 20px;
+      }
+    }
+  }
+}

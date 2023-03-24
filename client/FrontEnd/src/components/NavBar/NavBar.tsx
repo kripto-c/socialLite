@@ -1,45 +1,59 @@
-import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { useRef, useEffect, useState } from "react";
 import "./NavBar.scss";
 
 function NavBar() {
+  const [hover, setHover] = useState<boolean>(false);
+  const nav = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    nav.current?.addEventListener("mouseenter", () => {
+      setHover(true);
+    });
+    nav.current?.addEventListener("mouseleave", () => {
+      setHover(false);
+    });
+  }, []);
   return (
-    <nav>
-      <h1 className="socialLogo">
-        Socia<span>Lite</span>
+    <nav className="nav" id={hover ? "hover" : ""}>
+      <h1 className="title">
+        <span>Socia</span>
+        <span>Lite</span>
       </h1>
-      <ul>
-        <li>
-          <NavLink
-            className={(isActive) => (isActive ? "abc" : "AAAAAAAAAAAA")}
-            draggable="false"
-            to="/"
-          >
-            Iniciar Sesion
-            <span></span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            className={(isActive) => (isActive ? "abc" : "AAAAAAAAAAAA")}
-            draggable="false"
-            to="/registrarse"
-          >
-            Registrarse
-            <span></span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            className={(isActive) => (isActive ? "abc" : "AAAAAAAAAAAA")}
-            draggable="false"
-            to="/contact"
-          >
-            Contact
-            <span></span>
-          </NavLink>
-        </li>
-      </ul>
+      <div className="nav-container" ref={nav}>
+        <ul>
+          <li>
+            <NavLink
+              className={(isActive) => (isActive ? "active" : "a")}
+              draggable="false"
+              to="/"
+            >
+              <img src="/icon/log_icon.png" alt="" />
+              <span>Sign in</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className={(isActive) => (isActive ? "active" : "a")}
+              draggable="false"
+              to="/registrarse"
+            >
+              <img src="/icon/reg_icon.png" alt="" />
+              <span>Sign up</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className={(isActive) => (isActive ? "active" : "a")}
+              draggable="false"
+              to="/about"
+            >
+              <img src="/icon/contacto_icon.png" alt="" />
+              <span>Contact</span>
+            </NavLink>
+          </li>
+        </ul>
+      </div>
     </nav>
   );
 }

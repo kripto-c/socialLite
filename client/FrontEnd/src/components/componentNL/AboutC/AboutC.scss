@@ -1,0 +1,48 @@
+.info {
+  .about {
+    background-color: var(--bg-a1);
+    padding: 30px 20px;
+    border-radius: 20px;
+    height: 180px;
+    width: 700px;
+    margin-bottom: 20px;
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    p {
+      max-width: 700px;
+    }
+  }
+
+  .extra {
+    background-color: var(--bg-a1);
+    padding: 30px 20px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    height: 300px;
+
+    h3 {
+      text-align: center;
+      font-size: 30px;
+    }
+
+    img {
+      width: 100px;
+    }
+
+    button {
+      background-color: var(--err);
+      border: 0;
+      padding: 5px 10px;
+      color: var(--font-c3);
+      border-radius: 4px;
+      width: 100px;
+      cursor: pointer;
+    }
+  }
+}

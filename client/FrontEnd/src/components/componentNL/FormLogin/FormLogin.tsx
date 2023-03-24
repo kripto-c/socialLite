@@ -1,6 +1,7 @@
-import React, { ChangeEventHandler, useState } from "react";
+import { ChangeEventHandler, useState } from "react";
 import { login } from "../../GraphQL/getLogin";
 import { useQuery } from "@apollo/client";
+import { Link } from "react-router-dom";
 import "./FormLogin.scss";
 
 interface FormLog {
@@ -47,13 +48,22 @@ function FormLogin() {
           >
             Password
           </label>
-        </div>
-        <div className="check">
-          <input
-            type="checkbox"
-            onChange={() => setVerPassword(!verPassword)}
-          />
-          <label>Ver contraseña</label>
+          <div className="check">
+            <input
+              type="checkbox"
+              id="checkbox"
+              onChange={() => setVerPassword(!verPassword)}
+            />
+            {verPassword ? (
+              <label htmlFor="checkbox">
+                <img src="/icon/viewPass.png" alt="" />
+              </label>
+            ) : (
+              <label htmlFor="checkbox">
+                <img src="/icon/noPass.png" alt="" />
+              </label>
+            )}
+          </div>
         </div>
         <button
           className="boton"
@@ -62,6 +72,11 @@ function FormLogin() {
           Iniciar Sesion
         </button>
       </form>
+      <div className="link">
+        <Link to="/registrarse">
+          No tienes Cuenta? <span>Registrate</span>
+        </Link>
+      </div>
     </div>
   );
 }

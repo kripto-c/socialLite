@@ -1,5 +1,4 @@
-import React from "react";
-import FormLogin from "../../components/FormLogin/FormLogin";
+import FormLogin from "../../../components/componentNL/FormLogin/FormLogin";
 import "./Login.scss";
 
 function Login() {
