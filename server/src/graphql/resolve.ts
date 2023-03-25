@@ -1,5 +1,12 @@
 import User from "../models/Users";
 import Publications from "../models/Publications";
+import jwt, { JwtPayload } from "jsonwebtoken";
+import { palabraclave } from "../config";
+
+type LoginType = {
+  email: string;
+  password: string;
+};
 
 type UserTypes = {
   _id: string;
@@ -12,6 +19,7 @@ type UserTypes = {
   profile_picture: string;
   verified: boolean;
   connected: boolean;
+  token?: String;
 };
 
 type PublicationsTypes = {
@@ -45,10 +53,52 @@ export const resolvers = {
     users: async () => await User.find(),
     user: async (_: any, { _id }: UserTypes) => await User.findById(_id),
     publications: async () => await Publications.find(),
+    validarToken: async (_: any, { token }: { token: string }) => {
+      // console.log(token);
+      const code: JwtPayload | string | LoginType = jwt.verify(
+        token,
+        palabraclave
+      );
+      if (!code || typeof code === "string")
+        throw Error("Vuelva a iniciar sesion");
+      const result: UserTypes | null = await User.findOne({
+        email: code.email,
+        password: code.password,
+      });
+      if (!result) throw Error("Ocurrio un error");
+      const data = {
+        email: result.email,
+        name: result.name,
+        username: result.username,
+        lastname: result.lastName,
+        password: result.password,
+      };
+      const newToken = jwt.sign(data, palabraclave);
+      result.token = newToken;
+      return result;
+    },
   },
 
   //aqui en Mutation van las funciones de crear actualizar y eliminar de la DB
   Mutation: {
+    //Verificar Usuario si existe el usuario y devuelve datos con token
+    login: async (_: any, { email, password }: LoginType) => {
+      const emailResult = await User.findOne({ email });
+      if (!emailResult) throw Error("No se encontro cuenta con ese email");
+      const result: UserTypes | null = await User.findOne({ password });
+      if (!result) throw Error("La contraseña no coincide");
+      const data = {
+        email: result.email,
+        name: result.name,
+        username: result.username,
+        lastname: result.lastName,
+        password: result.password,
+      };
+      const token = jwt.sign(data, palabraclave, { expiresIn: "3d" });
+      result.token = token;
+      return result;
+    },
+
     //creacion de usuario
     createUser: async (
       _: any,
@@ -75,7 +125,6 @@ export const resolvers = {
         verified,
         connected,
       });
-
       const saveUser = await user.save();
 
       return saveUser;

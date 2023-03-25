@@ -6,8 +6,10 @@ export const typeDefs = gql`
     users: [User]
     user(_id: ID!): User
     publications: [Publications]
+    validarToken(token: String): UserToken
   }
   type Mutation {
+    login(email: String, password: String): UserToken
     createUser(
       name: String
       lastName: String
@@ -44,6 +46,21 @@ export const typeDefs = gql`
     verified: Boolean
     connected: Boolean
     publications: [Publications]
+  }
+
+  type UserToken {
+    _id: ID
+    name: String
+    lastName: String
+    username: String
+    email: String
+    password: String
+    birthdate: String
+    profile_picture: String
+    verified: Boolean
+    connected: Boolean
+    publications: [Publications]
+    token: String
   }
 
   type Publications {

@@ -4,6 +4,7 @@ import About from "./pages/HomeNL/About/About";
 import Contact from "./pages/HomeNL/About/About";
 import Registrarse from "./pages/HomeNL/Registrarse/Registrarse";
 import Login from "./pages/HomeNL/Login/Login";
+import RutasAcoutn from "./pages/Home/routes";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/registrarse" element={<Registrarse />} />
           <Route path="/about" element={<About />} />
+          <Route path="/login/*" element={<RutasAcoutn />} />
         </Routes>
       </div>
     </>

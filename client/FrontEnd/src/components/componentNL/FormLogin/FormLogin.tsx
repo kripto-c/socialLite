@@ -1,7 +1,6 @@
-import { ChangeEventHandler, useState } from "react";
-import { login } from "../../GraphQL/getLogin";
-import { useQuery } from "@apollo/client";
+import { ChangeEventHandler, FormEventHandler, useState } from "react";
 import { Link } from "react-router-dom";
+import { DataLogin } from "../../../pages/HomeNL/Login/Login";
 import "./FormLogin.scss";
 
 interface FormLog {
@@ -14,7 +13,11 @@ const initialForm = {
   password: "",
 };
 
-function FormLogin() {
+interface PropsLogin {
+  get: (datos: DataLogin) => Promise<void>;
+}
+
+function FormLogin(props: PropsLogin) {
   const [formData, setFormData] = useState<FormLog>(initialForm);
   const [verPassword, setVerPassword] = useState<boolean>(false);
 
@@ -22,10 +25,15 @@ function FormLogin() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+    props.get(formData);
+  };
+
   return (
     <div className="FormLogin">
       <h1>Iniciar Sesion</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="email">
           <input id="email" type="text" onChange={handleChange} name="email" />
           <label

@@ -4,6 +4,7 @@ import { NewAcount, BirthDate } from "./FormInterface";
 import { newUser } from "../../../GraphQL/createUser";
 import { useMutation } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
+import { NewData } from "../../../pages/HomeNL/Registrarse/Registrarse";
 import "./FormRegistro.scss";
 
 const initial = {
@@ -21,7 +22,11 @@ const birthInitial = {
   año: 0,
 };
 
-function FormRegistro() {
+interface Props {
+  submit: (data: NewData) => Promise<void>;
+}
+
+function FormRegistro(props: Props) {
   const [createUser, { data, loading, error }] = useMutation(newUser);
   const [birth, setBirth] = useState<BirthDate>(birthInitial);
   const [viewPassword, setViewPassword] = useState<boolean>(false);
@@ -77,8 +82,8 @@ function FormRegistro() {
     const datos = registro;
     datos.birthdate = birthD;
     //===============//
-
-    await createUser({ variables: datos });
+    props.submit(datos);
+    // await createUser({ variables: datos });
   };
 
   const volver = (e: any) => {
