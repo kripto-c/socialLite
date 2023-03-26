@@ -1,0 +1,83 @@
+.formRegistro {
+  background-color: var(--bg-a1);
+  padding: 30px 20px;
+  border-radius: 20px;
+  width: 450px;
+  height: max-content;
+  transform: translateX(100px);
+  opacity: 0;
+
+  animation: loginAp 0.5s forwards;
+
+  @keyframes loginAp {
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 35px;
+    font-weight: 900;
+    font-family: var(--font-f1);
+    margin: 0px 0px 20px;
+  }
+  form {
+    height: max-content;
+    padding: 5px 0px;
+
+    text-align: center;
+
+    .pass {
+      position: relative;
+      width: 100%;
+      margin: 0 auto 8%;
+
+      #checkbox {
+        display: none;
+      }
+
+      .viewPass {
+        cursor: pointer;
+        position: absolute;
+        top: 5px;
+        right: 40px;
+        img {
+          width: 30px;
+          height: 30px;
+        }
+      }
+    }
+
+    .birthdate {
+      width: 85%;
+      margin: 0 auto 20px;
+      display: flex;
+      justify-content: space-around;
+
+      select {
+        width: 100px;
+        border-radius: 4px;
+        font-size: 15px;
+        border: 1px solid var(--bg-a3);
+      }
+    }
+
+    .boton {
+      background-color: var(--button-c);
+      width: 220px;
+      color: var(--font-c3);
+      border: 0;
+      border-radius: 4px;
+      padding: 5px;
+      cursor: pointer;
+      font-size: 15px;
+
+      &:disabled {
+        background-color: var(--button-d);
+        cursor: no-drop;
+      }
+    }
+  }
+}

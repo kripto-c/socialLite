@@ -1,0 +1,114 @@
+.validar {
+  background-color: #00000037;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 70px;
+    filter: brightness(50%);
+    animation: load 2s infinite linear normal;
+
+    @keyframes load {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
+}
+
+.Login {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url("/homeNL/log-bg.webp") no-repeat;
+  background-size: 500px;
+  background-position: 70% center;
+  animation: logAp 0.5s forwards;
+  position: relative;
+
+  @keyframes logAp {
+    100% {
+      background-position: 90% center;
+    }
+  }
+
+  .modal {
+    background-color: #0000006c;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 50px;
+      filter: brightness(200%);
+
+      animation: load 2s infinite linear normal;
+
+      @keyframes load {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    }
+  }
+
+  .modal-Err {
+    width: 100%;
+    height: 200px;
+    top: 0;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .adv {
+      display: flex;
+      background-color: var(--bg-a1);
+      padding: 10px 20px;
+      border-radius: 8px;
+      width: 400px;
+      justify-content: space-between;
+      border: 1.5px solid #ee1616;
+      animation: err 0.5s linear normal;
+
+      @keyframes err {
+        10%,
+        30%,
+        50%,
+        70%,
+        90% {
+          transform: translateX(2px);
+        }
+        20%,
+        40%,
+        60%,
+        80%,
+        90% {
+          transform: translateX(-2px);
+        }
+      }
+
+      button {
+        color: var(--err);
+        background-color: transparent;
+        border: 0;
+        font-size: 17px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+    }
+  }
+}

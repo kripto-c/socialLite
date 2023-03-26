@@ -1,45 +1,30 @@
-import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { useRef, useEffect, useState } from "react";
+import NavBarN from "./NavBarN";
+import NavBarL from "./NavBarL";
+import { isLogin } from "../../store/store";
+import CerrarSession from "./logout/CerrarSession";
 import "./NavBar.scss";
 
 function NavBar() {
+  const [hover, setHover] = useState<boolean>(false);
+  const nav = useRef<HTMLParagraphElement>(null);
+  const log = isLogin((state) => state.log);
+  const [cs, setCS] = useState<boolean>(false);
+
+  useEffect(() => {
+    console.log(log);
+    nav.current?.addEventListener("mouseenter", () => {
+      setHover(true);
+    });
+    nav.current?.addEventListener("mouseleave", () => {
+      setHover(false);
+    });
+  }, [log]);
   return (
-    <nav>
-      <h1 className="socialLogo">
-        Socia<span>Lite</span>
-      </h1>
-      <ul>
-        <li>
-          <NavLink
-            className={(isActive) => (isActive ? "abc" : "AAAAAAAAAAAA")}
-            draggable="false"
-            to="/"
-          >
-            Iniciar Sesion
-            <span></span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            className={(isActive) => (isActive ? "abc" : "AAAAAAAAAAAA")}
-            draggable="false"
-            to="/registrarse"
-          >
-            Registrarse
-            <span></span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            className={(isActive) => (isActive ? "abc" : "AAAAAAAAAAAA")}
-            draggable="false"
-            to="/contact"
-          >
-            Contact
-            <span></span>
-          </NavLink>
-        </li>
-      </ul>
+    <nav className="nav" id={hover ? "hover" : ""}>
+      {log ? <NavBarL set={setCS} value={cs} /> : <NavBarN />}
+      {cs ? <CerrarSession set={setCS} value={cs} /> : null}
     </nav>
   );
 }
