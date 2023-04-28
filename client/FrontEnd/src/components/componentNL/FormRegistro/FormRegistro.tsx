@@ -5,6 +5,7 @@ import { newUser } from "../../../GraphQL/createUser";
 import { useMutation } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
 import { NewData } from "../../../pages/HomeNL/Registrarse/Registrarse";
+import { Toaster } from "sonner";
 import "./FormRegistro.scss";
 
 const initial = {
@@ -103,7 +104,7 @@ function FormRegistro(props: Props) {
       {/* =================================== */}
 
       {/* =====Si ya se registro se mostrara esta alerta ===== */}
-      {data ? (
+      {/* {data ? (
         <div className="registroExito">
           <span>
             <button onClick={volver}>X</button>
@@ -115,7 +116,7 @@ function FormRegistro(props: Props) {
             </div>
           </span>
         </div>
-      ) : null}
+      ) : null} */}
       {/* =====Si ya se registro se mostrara esta alerta ===== */}
 
       {/* =====Si ocurre un error se mostrara esta alerta ===== */}

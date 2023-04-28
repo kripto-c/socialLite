@@ -27,21 +27,15 @@ function Login() {
 
   const getAcoutn = async (datos: DataLogin) => {
     try {
-      await login({ variables: datos });
+      const result = await login({ variables: datos });
+      console.log(result.data);
+      if (!result.data.login.verified) {
+        navigate(`/validate/${result.data.login._id}`);
+      }
     } catch (err: any) {
       setError(err.message);
     }
   };
-
-  if (data) {
-    localStorage.setItem("userAcount", JSON.stringify(data.login));
-    navigate("/login");
-    setLogin(true);
-  } else if (validate) {
-    localStorage.setItem("userAcount", JSON.stringify(validate.validarToken));
-    navigate("/login");
-    setLogin(true);
-  }
 
   useEffect(() => {
     const userData = localStorage.getItem("userAcount");
