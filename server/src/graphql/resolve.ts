@@ -2,13 +2,14 @@ import User from "../models/Users";
 import Publications from "../models/Publications";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { palabraclave } from "../config";
+import sendEmail from "../email/sendEmail";
 
 type LoginType = {
   email: string;
   password: string;
 };
 
-type UserTypes = {
+export type UserTypes = {
   _id: string;
   name: string;
   lastName: string;
@@ -20,6 +21,7 @@ type UserTypes = {
   verified: boolean;
   connected: boolean;
   token?: String;
+  codeVerify: string;
 };
 
 type PublicationsTypes = {
@@ -44,6 +46,14 @@ type Deletecoments = {
 
 type DeleteCommentResult = {
   success: boolean;
+};
+
+export type DataEmail = {
+  name: string;
+  lastname: string;
+  email: string;
+  username: string;
+  codeVerify: string;
 };
 
 export const resolvers = {
@@ -76,6 +86,26 @@ export const resolvers = {
       const newToken = jwt.sign(data, palabraclave);
       result.token = newToken;
       return result;
+    },
+
+    validateCode: async (
+      _: any,
+      { code, id }: { code: string; id: string }
+    ) => {
+      // console.log("TEST");
+      const user = await User.findById(id);
+      if (!user) throw Error("Usuario no encontrado");
+      console.log(user.codeVerify);
+      console.log(code);
+      console.log(user.codeVerify == code);
+      if (user.codeVerify == code) {
+        user.verified = true;
+        user.codeVerify = "";
+        await user.save();
+        return user;
+      } else {
+        throw Error("Codigo no valido");
+      }
     },
   },
 
@@ -114,6 +144,25 @@ export const resolvers = {
         connected,
       }: UserTypes
     ) => {
+      const userCheck = await User.findOne({ username });
+
+      if (userCheck) throw new Error("Ya existe un Usuario con ese Username");
+
+      const emailCheck = await User.findOne({ email });
+
+      if (emailCheck) throw new Error("Email ya registrado");
+
+      const codes: string[] = [
+        "1234567890",
+        "abcdefghijklmnopqrstuvwxyz",
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+      ];
+
+      let code: string = "";
+      for (let a = 0; a <= 8; a++) {
+        const type: string = codes[Math.round(Math.random() * 2)];
+        code = code + type[Math.round(Math.random() * (type.length - 1))];
+      }
       const user = new User({
         name,
         lastName,
@@ -124,10 +173,29 @@ export const resolvers = {
         profile_picture,
         verified,
         connected,
+        codeVerify: code,
       });
       const saveUser = await user.save();
 
-      return saveUser;
+      if (
+        saveUser.username &&
+        saveUser.email &&
+        saveUser.codeVerify &&
+        saveUser.name &&
+        saveUser.lastName
+      ) {
+        const dataEmail: DataEmail = {
+          name: saveUser.name,
+          lastname: saveUser.lastName,
+          email: saveUser.email,
+          username: saveUser.username,
+          codeVerify: saveUser.codeVerify,
+        };
+
+        sendEmail(dataEmail, "VERIFICAR CUENTA");
+
+        return saveUser;
+      }
     },
     //creacion de publicaciones
     createPublication: async (

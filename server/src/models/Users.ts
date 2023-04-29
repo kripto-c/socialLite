@@ -27,6 +27,9 @@ const UserShema = new mongoose.Schema(
     profile_picture: {
       type: String,
     },
+    codeVerify: {
+      type: String,
+    },
     friends: [
       {
         type: [mongoose.Schema.Types.ObjectId],
