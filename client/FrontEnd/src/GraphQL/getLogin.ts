@@ -1,10 +1,18 @@
 import { gql } from "@apollo/client";
 
-export const login = gql`
-    type Query {
-        login($email: String $password: String){
-            token
-            
-        }
+export const getLogin = gql`
+  mutation ($email: String $password: String) {
+    login(email: $email password: $password) {
+    token
+    _id
+    name
+    lastName
+    username
+    email
+    password
+    birthdate
+    profile_picture
+    verified
     }
+  }
 `;
