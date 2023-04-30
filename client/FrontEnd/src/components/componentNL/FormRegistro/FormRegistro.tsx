@@ -52,6 +52,7 @@ function FormRegistro(props: Props) {
     return;
   };
 
+  //########################################
   const days = () => {
     const dias = [];
     for (let a = 1; a <= 31; a++) {
@@ -76,6 +77,7 @@ function FormRegistro(props: Props) {
     }
     return años.sort((a, b) => -1);
   };
+  //########################################
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();

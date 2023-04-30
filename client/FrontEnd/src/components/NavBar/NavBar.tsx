@@ -13,7 +13,6 @@ function NavBar() {
   const [cs, setCS] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log(log);
     nav.current?.addEventListener("mouseenter", () => {
       setHover(true);
     });

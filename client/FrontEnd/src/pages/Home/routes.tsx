@@ -1,4 +1,4 @@
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Acount from "./acount/Acount";
 import Chats from "./chats/Chats";
 import Friends from "./friends/Friends";

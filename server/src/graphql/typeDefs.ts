@@ -7,7 +7,7 @@ export const typeDefs = gql`
     user(_id: ID!): User
     publications: [Publications]
     validarToken(token: String): UserToken
-    validateCode(id: String, code: String): UserToken
+    validateCode(id: String, code: String): UserVerify
   }
   type Mutation {
     login(email: String, password: String): UserToken
@@ -47,6 +47,18 @@ export const typeDefs = gql`
     verified: Boolean
     connected: Boolean
     publications: [Publications]
+  }
+
+  type UserVerify {
+    _id: ID
+    name: String
+    lastName: String
+    username: String
+    email: String
+    birthdate: String
+    profile_picture: String
+    verified: Boolean
+    token: String
   }
 
   type UserToken {

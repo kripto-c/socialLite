@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 import * as emailData from "../config";
-import { DataEmail, UserTypes } from "../graphql/resolve";
+import { DataEmail } from "../graphql/resolve";
 import { verifyAcoutn } from "./controllers";
 import { IEmailConfig } from "./TypeEmail";
 
@@ -14,6 +14,7 @@ async function main(user: DataEmail, typeEmail: string) {
       pass: emailData.Pass,
     },
   });
+
   let emailConfig: IEmailConfig = {
     from: `"${typeEmail}" <${emailData.User}>`,
     to: user.email,
@@ -26,6 +27,7 @@ async function main(user: DataEmail, typeEmail: string) {
     case "VERIFICAR CUENTA":
       const data = verifyAcoutn(emailConfig, user);
       emailConfig = data;
+      break;
   }
 
   await transporter.sendMail(emailConfig);

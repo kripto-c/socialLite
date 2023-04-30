@@ -28,9 +28,15 @@ function Login() {
   const getAcoutn = async (datos: DataLogin) => {
     try {
       const result = await login({ variables: datos });
-      console.log(result.data);
       if (!result.data.login.verified) {
         navigate(`/validate/${result.data.login._id}`);
+      } else {
+        setLogin(true);
+        localStorage.setItem("userAcount", JSON.stringify(result.data.login));
+        setValidar(true);
+        setDatosValidar(result.data.login.token);
+        navigate("/login/");
+        // navigate("/home/");
       }
     } catch (err: any) {
       setError(err.message);
