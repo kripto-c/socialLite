@@ -1,6 +1,5 @@
 import { config } from "dotenv";
 config();
-console.log(process.env.EMAIL_SERVICE);
 
 export const MONGODB_URI =
   process.env.MONGO_URI_PROD || "mongodb://127.0.0.1/socialLite";

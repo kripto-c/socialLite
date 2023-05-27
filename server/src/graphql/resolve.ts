@@ -3,6 +3,7 @@ import Publications from "../models/Publications";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { palabraclave } from "../config";
 import sendEmail from "../email/sendEmail";
+import { IUserVerify } from "./Type";
 
 type LoginType = {
   email: string;
@@ -59,12 +60,10 @@ export type DataEmail = {
 export const resolvers = {
   //aqui en Query van las funciones de obtencion de datos de la DB
   Query: {
-    hello: () => "Hello World!",
     users: async () => await User.find(),
     user: async (_: any, { _id }: UserTypes) => await User.findById(_id),
     publications: async () => await Publications.find(),
     validarToken: async (_: any, { token }: { token: string }) => {
-      // console.log(token);
       const code: JwtPayload | string | LoginType = jwt.verify(
         token,
         palabraclave
@@ -92,19 +91,51 @@ export const resolvers = {
       _: any,
       { code, id }: { code: string; id: string }
     ) => {
-      // console.log("TEST");
-      const user = await User.findById(id);
-      if (!user) throw Error("Usuario no encontrado");
-      console.log(user.codeVerify);
-      console.log(code);
-      console.log(user.codeVerify == code);
-      if (user.codeVerify == code) {
+      try {
+        let user = await User.findById(id);
+        if (!user) throw Error("Usuario no encontrado");
+        if (user.codeVerify != code) throw Error("Codigo no valido");
         user.verified = true;
         user.codeVerify = "";
-        await user.save();
-        return user;
-      } else {
-        throw Error("Codigo no valido");
+
+        const data = {
+          email: user.email,
+          name: user.name,
+          username: user.username,
+          lastname: user.lastName,
+          password: user.password,
+        };
+        const newToken = jwt.sign(data, palabraclave, { expiresIn: "3d" });
+        let xd = await user.save();
+        console.log(xd);
+        debugger;
+
+        if (
+          !xd.name ||
+          !xd.lastName ||
+          !xd.username ||
+          !xd.email ||
+          !xd.birthdate ||
+          !xd.verified ||
+          !xd._id
+        )
+          throw Error("Ocurrio un error");
+
+        const result: IUserVerify = {
+          _id: xd._id.toString(),
+          name: xd.name,
+          lastName: xd.lastName,
+          username: xd.username,
+          email: xd.email,
+          birthdate: xd.birthdate,
+          verified: xd.verified,
+          token: newToken,
+        };
+
+        return result;
+      } catch (error: any) {
+        console.log(error);
+        throw Error(error.message);
       }
     },
   },
@@ -115,7 +146,7 @@ export const resolvers = {
     login: async (_: any, { email, password }: LoginType) => {
       const emailResult = await User.findOne({ email });
       if (!emailResult) throw Error("No se encontro cuenta con ese email");
-      const result: UserTypes | null = await User.findOne({ password });
+      const result: UserTypes | null = await User.findOne({ email, password });
       if (!result) throw Error("La contraseña no coincide");
       const data = {
         email: result.email,
@@ -124,7 +155,7 @@ export const resolvers = {
         lastname: result.lastName,
         password: result.password,
       };
-      const token = jwt.sign(data, palabraclave, { expiresIn: "3d" });
+      const token = jwt.sign(data, palabraclave, { expiresIn: "2d" });
       result.token = token;
       return result;
     },
@@ -159,6 +190,7 @@ export const resolvers = {
       ];
 
       let code: string = "";
+
       for (let a = 0; a <= 8; a++) {
         const type: string = codes[Math.round(Math.random() * 2)];
         code = code + type[Math.round(Math.random() * (type.length - 1))];
