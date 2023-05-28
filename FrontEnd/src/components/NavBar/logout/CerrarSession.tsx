@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { isLogin } from "../../../store/store";
+import { useLogin } from "../../../store/LoginStore/LoginStore";
 import { useNavigate } from "react-router-dom";
 import "./CerrarSession.scss";
 
@@ -10,13 +10,12 @@ interface Props {
 function CerrarSession({ set, value }: Props) {
   const navigate = useNavigate();
 
-  const setLogin = isLogin((state) => state.setLogin);
+  const loginStore = useLogin((state) => state);
 
   const cerrar = () => {
     localStorage.removeItem("userAcount");
-    setLogin(false);
+    loginStore.exitSession();
     set(!value);
-    console.log("aoiwdnoaiwndoianwodinawoidnaoiwndoi");
     navigate("/");
   };
 

@@ -2,14 +2,14 @@ import { NavLink } from "react-router-dom";
 import { useRef, useEffect, useState } from "react";
 import NavBarN from "./NavBarN";
 import NavBarL from "./NavBarL";
-import { isLogin } from "../../store/store";
+import { useLogin } from "../../store/LoginStore/LoginStore";
 import CerrarSession from "./logout/CerrarSession";
 import "./NavBar.scss";
 
 function NavBar() {
   const [hover, setHover] = useState<boolean>(false);
   const nav = useRef<HTMLParagraphElement>(null);
-  const log = isLogin((state) => state.log);
+  const loginStore = useLogin((state) => state);
   const [cs, setCS] = useState<boolean>(false);
 
   useEffect(() => {
@@ -19,10 +19,10 @@ function NavBar() {
     nav.current?.addEventListener("mouseleave", () => {
       setHover(false);
     });
-  }, [log]);
+  }, [loginStore.isLogin]);
   return (
     <nav className="nav" id={hover ? "hover" : ""}>
-      {log ? <NavBarL set={setCS} value={cs} /> : <NavBarN />}
+      {loginStore.isLogin ? <NavBarL set={setCS} value={cs} /> : <NavBarN />}
       {cs ? <CerrarSession set={setCS} value={cs} /> : null}
     </nav>
   );

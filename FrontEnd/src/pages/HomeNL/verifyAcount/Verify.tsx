@@ -1,19 +1,19 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useRef, FormEventHandler } from "react";
 import { useQuery } from "@apollo/client";
-import "./Verify.scss";
 import { ValidateCode } from "../../../GraphQL/validateToken";
 import { toast } from "sonner";
-import { isLogin } from "../../../store/store";
+import { useLogin } from "../../../store/LoginStore/LoginStore";
+import "./Verify.scss";
 
 function VerifyAcoutn() {
   const params = useParams();
+  const navigate = useNavigate();
+  const loginStore = useLogin((state) => state);
   const input = useRef<HTMLInputElement>(null);
   const [errForm, setErrForm] = useState<boolean>(false);
   const [err, setErr] = useState<boolean>(false);
-  const navigate = useNavigate();
   const [datosValidar, setDatosValidar] = useState<boolean>(false);
-  const log = isLogin((state) => state.setLogin);
 
   const {
     loading: load,
@@ -38,14 +38,13 @@ function VerifyAcoutn() {
     toast.success("Cuenta verificada con Exito", {
       description: "Sera redirigido a la pagina principal",
     });
-    setTimeout(() => {
-      localStorage.setItem("userAcount", JSON.stringify(validate.validateCode));
-      log(true);
-      navigate("/login/");
-    }, 1000);
+    const token = localStorage.getItem("token");
+    const data = { ...validate.validateCode, token };
+    loginStore.setLogin(data);
+    navigate("/login/");
   }
 
-  if (error) console.log(error.message);
+  if (error) toast.error(error.message);
 
   console.log(params);
   return (
