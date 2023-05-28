@@ -1,7 +1,7 @@
 import path from "path";
 import fs from "fs";
 import { IEmailConfig } from "./TypeEmail";
-import { DataEmail } from "../graphql/resolve";
+import { DataEmail } from "../graphql/resolverTypes";
 
 export const verifyAcoutn = (emailConfig: IEmailConfig, user: DataEmail) => {
   emailConfig.subject = "Verifica tu Cuenta";

@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 import * as emailData from "../config";
-import { DataEmail } from "../graphql/resolve";
+import { DataEmail, UserTypes } from "../graphql/resolverTypes";
 import { verifyAcoutn } from "./controllers";
 import { IEmailConfig } from "./TypeEmail";
 

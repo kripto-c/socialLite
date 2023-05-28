@@ -3,59 +3,16 @@ import Publications from "../models/Publications";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { palabraclave } from "../config";
 import sendEmail from "../email/sendEmail";
-import { IUserVerify } from "./Type";
-
-type LoginType = {
-  email: string;
-  password: string;
-};
-
-export type UserTypes = {
-  _id: string;
-  name: string;
-  lastName: string;
-  username: string;
-  email: string;
-  password: string;
-  birthdate: string;
-  profile_picture: string;
-  verified: boolean;
-  connected: boolean;
-  token?: String;
-  codeVerify: string;
-};
-
-type PublicationsTypes = {
-  _id: string;
-  id_user: string;
-  description: string;
-  image: string;
-  comments: [];
-};
-
-type CommentTypes = {
-  _id: string;
-  id_public: string;
-  text: string;
-  author: UserTypes["_id"];
-};
-
-type Deletecoments = {
-  _id?: string;
-  id_public?: string;
-};
-
-type DeleteCommentResult = {
-  success: boolean;
-};
-
-export type DataEmail = {
-  name: string;
-  lastname: string;
-  email: string;
-  username: string;
-  codeVerify: string;
-};
+import {
+  CommentTypes,
+  DataEmail,
+  DeleteCommentResult,
+  Deletecoments,
+  LoginType,
+  PublicationsTypes,
+  UserTypes,
+  
+} from "./resolverTypes";
 
 export const resolvers = {
   //aqui en Query van las funciones de obtencion de datos de la DB
@@ -91,10 +48,13 @@ export const resolvers = {
       _: any,
       { code, id }: { code: string; id: string }
     ) => {
-      try {
-        let user = await User.findById(id);
-        if (!user) throw Error("Usuario no encontrado");
-        if (user.codeVerify != code) throw Error("Codigo no valido");
+      // console.log("TEST");
+      const user = await User.findById(id);
+      if (!user) throw Error("Usuario no encontrado");
+      console.log(user.codeVerify);
+      console.log(code);
+      console.log(user.codeVerify == code);
+      if (user.codeVerify == code) {
         user.verified = true;
         user.codeVerify = "";
 
