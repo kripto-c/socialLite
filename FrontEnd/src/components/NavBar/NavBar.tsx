@@ -1,10 +1,23 @@
-import { NavLink } from "react-router-dom";
 import { useRef, useEffect, useState } from "react";
 import NavBarN from "./NavBarN";
 import NavBarL from "./NavBarL";
 import { useLogin } from "../../store/LoginStore/LoginStore";
 import CerrarSession from "./logout/CerrarSession";
 import "./NavBar.scss";
+
+export function BarraMenu() {
+  return (
+    <div className="menu-Barra">
+      <h1>SociaLite</h1>
+      <div className="opt">
+        <button className="minimize">_</button>
+        <button className="exit" onClick={() => closeApp()}>
+          X
+        </button>
+      </div>
+    </div>
+  );
+}
 
 function NavBar() {
   const [hover, setHover] = useState<boolean>(false);

@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import NavBar from "./components/NavBar/NavBar";
+import NavBar, { BarraMenu } from "./components/NavBar/NavBar";
 import About from "./pages/HomeNL/About/About";
 import Contact from "./pages/HomeNL/About/About";
 import Registrarse from "./pages/HomeNL/Registrarse/Registrarse";
@@ -11,11 +11,13 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { ValidateToken } from "./GraphQL/validateToken";
 import { useLogin } from "./store/LoginStore/LoginStore";
+import { useNavigate } from "react-router-dom";
 
 function App() {
   const [validateToken, setValidateToken] = useState<boolean>(false);
   const [token, setToken] = useState<string>("");
   const loginStore = useLogin((state) => state);
+  const nagivate = useNavigate();
 
   const { loading: load, data: validate } = useQuery(ValidateToken, {
     skip: !validateToken,
@@ -30,11 +32,15 @@ function App() {
     }
   }, []);
   useEffect(() => {
-    if (validate) loginStore.setLogin(validate.validarToken);
+    if (validate) {
+      loginStore.setLogin(validate.validarToken);
+      nagivate("/login/");
+    }
   }, [validate]);
 
   return (
     <>
+    <BarraMenu />
       <div className="contenedorGlobal">
         <Toaster richColors closeButton expand={true} />
         <div className="container">

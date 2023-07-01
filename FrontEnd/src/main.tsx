@@ -11,9 +11,11 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+const currentPath = location.pathname;
+
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <ApolloProvider client={client}>
-    <BrowserRouter>
+    <BrowserRouter basename={currentPath}>
       <App />
     </BrowserRouter>
   </ApolloProvider>

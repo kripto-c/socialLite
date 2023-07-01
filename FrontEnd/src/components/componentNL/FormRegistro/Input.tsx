@@ -10,7 +10,7 @@ interface Props {
   className?: string;
 }
 
-function Input(props: Props) {
+export function Input(props: Props) {
   const input = useRef<HTMLInputElement>(null);
   const [err, setErr] = useState<boolean>(false);
   const [msgErr, setMsgErr] = useState<string>("");

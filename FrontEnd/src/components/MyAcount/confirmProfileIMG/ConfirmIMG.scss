@@ -1,0 +1,83 @@
+.confirm-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9900;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: background-op 0.4s forwards;
+
+  .image-container {
+    background-color: var(--bg-a2);
+    padding: 20px;
+    text-align: center;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 50%;
+    animation: toBottom 0.4s forwards;
+
+    img {
+      width: 100px;
+
+      width: 120px;
+      height: 120px;
+      padding: 10px;
+      background-color: var(--bg-a3);
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .buttons-img-change {
+      width: 100%;
+      display: flex;
+      justify-content: space-evenly;
+      button {
+        background-color: var(--bg-a1);
+        border-radius: 4px;
+        padding: 3px 10px;
+        border: 1px solid #00000050;
+        cursor: pointer;
+
+        &[id="cancelar"] {
+          &:hover {
+            background-color: #be1f1f;
+            color: white;
+            border: 0;
+          }
+        }
+        &[id="confirmar"] {
+          &:hover {
+            background-color: #35c135;
+            color: white;
+            border: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes background-op {
+  from {
+    background-color: #00000000;
+  }
+  to {
+    background-color: #00000090;
+  }
+}
+
+@keyframes toBottom {
+  from {
+    transform: translateY(-10px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
