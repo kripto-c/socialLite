@@ -4,6 +4,7 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 import { palabraclave } from "../config";
 import sendEmail from "../email/sendEmail";
 import {
+  IUserVerify,
   CommentTypes,
   DataEmail,
   DeleteCommentResult,
@@ -11,7 +12,6 @@ import {
   LoginType,
   PublicationsTypes,
   UserTypes,
-  
 } from "./resolverTypes";
 
 export const resolvers = {
@@ -49,50 +49,50 @@ export const resolvers = {
       { code, id }: { code: string; id: string }
     ) => {
       // console.log("TEST");
-      const user = await User.findById(id);
-      if (!user) throw Error("Usuario no encontrado");
-      console.log(user.codeVerify);
-      console.log(code);
-      console.log(user.codeVerify == code);
-      if (user.codeVerify == code) {
-        user.verified = true;
-        user.codeVerify = "";
+      try {
+        const user = await User.findById(id);
+        if (!user) throw Error("Usuario no encontrado");
+        console.log(user.codeVerify);
+        console.log(code);
+        console.log(user.codeVerify == code);
+        if (user.codeVerify == code) {
+          user.verified = true;
+          user.codeVerify = "";
 
-        const data = {
-          email: user.email,
-          name: user.name,
-          username: user.username,
-          lastname: user.lastName,
-          password: user.password,
-        };
-        const newToken = jwt.sign(data, palabraclave, { expiresIn: "3d" });
-        let xd = await user.save();
-        console.log(xd);
-        debugger;
+          const data = {
+            email: user.email,
+            name: user.name,
+            username: user.username,
+            lastname: user.lastName,
+            password: user.password,
+          };
+          const newToken = jwt.sign(data, palabraclave, { expiresIn: "3d" });
+          let xd = await user.save();
 
-        if (
-          !xd.name ||
-          !xd.lastName ||
-          !xd.username ||
-          !xd.email ||
-          !xd.birthdate ||
-          !xd.verified ||
-          !xd._id
-        )
-          throw Error("Ocurrio un error");
+          if (
+            !xd.name ||
+            !xd.lastName ||
+            !xd.username ||
+            !xd.email ||
+            !xd.birthdate ||
+            !xd.verified ||
+            !xd._id
+          )
+            throw Error("Ocurrio un error");
 
-        const result: IUserVerify = {
-          _id: xd._id.toString(),
-          name: xd.name,
-          lastName: xd.lastName,
-          username: xd.username,
-          email: xd.email,
-          birthdate: xd.birthdate,
-          verified: xd.verified,
-          token: newToken,
-        };
+          const result: IUserVerify = {
+            _id: xd._id.toString(),
+            name: xd.name,
+            lastName: xd.lastName,
+            username: xd.username,
+            email: xd.email,
+            birthdate: xd.birthdate,
+            verified: xd.verified,
+            token: newToken,
+          };
 
-        return result;
+          return result;
+        }
       } catch (error: any) {
         console.log(error);
         throw Error(error.message);
