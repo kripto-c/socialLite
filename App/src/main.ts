@@ -1,12 +1,8 @@
 import { BrowserWindow, app } from "electron";
 import path from "path";
-import { closeApp } from "./event/Event";
+import { eventBarra } from "./event/Event";
 
-let mainWindow: Electron.BrowserWindow | null;
-
-let tray;
-
-let hide;
+let mainWindow: Electron.BrowserWindow | null = null;
 
 let isDev = true;
 
@@ -27,21 +23,23 @@ const createWindows = () => {
     },
   });
 
-  // win.loadURL("http://localhost:5173");
-
-  // mainWindow.setIcon(path.join(__dirname, "ico", "icon.png"));
+  // mainWindow.setIcon(path.join(__dirname, "ico", "icon.png")); // reemplazar por la ruta del icono de la aplicacion
 
   isDev
     ? mainWindow.loadURL("http://localhost:5173")
     : mainWindow.loadFile(path.join(__dirname, "client", "index.html"));
 
   !isDev && mainWindow.setMenu(null);
+
+  let icon = path.join(__dirname, "ico", "icon.png");
+
+  eventBarra(app, mainWindow, icon);
 };
 
 //####################################//
 //###########   EVENTOS  #############//
 //####################################//
-closeApp(app);
+// eventBarra(app, mainWindow);
 //####################################//
 
 app.on("ready", createWindows);

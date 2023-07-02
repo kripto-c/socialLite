@@ -17,12 +17,9 @@
   }
 
   .opt {
-    width: 40px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    width: max-content;
     justify-items: center;
     position: relative;
-    margin-right: 20px;
 
     button {
       width: 30px;
@@ -37,22 +34,8 @@
       cursor: pointer;
       transition: all 0.3s;
 
-      &[class="minimize"] {
-        background-color: transparent;
-        text-align: center;
-
-        &:hover {
-          color: #000;
-        }
-      }
-      &[class="exit"] {
-        background-color: transparent;
-        font-family: var(--font);
-        -webkit-text-stroke: 0.1px;
-
-        &:hover {
-          color: #0e0e0e;
-        }
+      &:hover {
+        color: #000;
       }
     }
   }

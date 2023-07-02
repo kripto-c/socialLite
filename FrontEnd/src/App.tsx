@@ -12,10 +12,12 @@ import { useQuery } from "@apollo/client";
 import { ValidateToken } from "./GraphQL/validateToken";
 import { useLogin } from "./store/LoginStore/LoginStore";
 import { useNavigate } from "react-router-dom";
+import Confirm from "./components/salirApp/Confirm";
 
 function App() {
   const [validateToken, setValidateToken] = useState<boolean>(false);
   const [token, setToken] = useState<string>("");
+  const [exitApp, setExitApp] = useState<boolean>(false);
   const loginStore = useLogin((state) => state);
   const nagivate = useNavigate();
 
@@ -40,7 +42,8 @@ function App() {
 
   return (
     <>
-    <BarraMenu />
+      {exitApp && <Confirm setExitApp={setExitApp} />}
+      <BarraMenu setExitApp={setExitApp} />
       <div className="contenedorGlobal">
         <Toaster richColors closeButton expand={true} />
         <div className="container">
